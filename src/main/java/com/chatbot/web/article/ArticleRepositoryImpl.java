@@ -12,4 +12,6 @@ public class ArticleRepositoryImpl extends QuerydslRepositorySupport implements 
     public ArticleRepositoryImpl() {
         super(Article.class);
     }
+
+
 }

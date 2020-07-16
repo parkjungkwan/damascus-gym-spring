@@ -7,6 +7,7 @@ import com.querydsl.core.types.dsl.*;
 import com.querydsl.core.types.PathMetadata;
 import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -25,11 +26,11 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath gender = createString("gender");
 
+    public final NumberPath<Long> id = createNumber("id", Long.class);
+
     public final DateTimePath<java.time.LocalDateTime> joinDate = createDateTime("joinDate", java.time.LocalDateTime.class);
 
     public final StringPath joinWay = createString("joinWay");
-
-    public final NumberPath<Integer> memberId = createNumber("memberId", Integer.class);
 
     public final StringPath name = createString("name");
 
@@ -46,6 +47,8 @@ public class QMember extends EntityPathBase<Member> {
     public final NumberPath<Integer> requestScoreCount = createNumber("requestScoreCount", Integer.class);
 
     public final StringPath ssn = createString("ssn");
+
+    public final ListPath<com.chatbot.web.volunteer.Volunteer, com.chatbot.web.volunteer.QVolunteer> volunteers = this.<com.chatbot.web.volunteer.Volunteer, com.chatbot.web.volunteer.QVolunteer>createList("volunteers", com.chatbot.web.volunteer.Volunteer.class, com.chatbot.web.volunteer.QVolunteer.class, PathInits.DIRECT2);
 
     public final NumberPath<Integer> volunteerScore = createNumber("volunteerScore", Integer.class);
 

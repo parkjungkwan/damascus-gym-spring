@@ -6,4 +6,5 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", maxAge = 3306)
 @RestController @RequestMapping("/articles")
 public class ArticleController {
+
 }
