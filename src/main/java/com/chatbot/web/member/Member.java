@@ -2,34 +2,48 @@ package com.chatbot.web.member;
 
 import lombok.*;
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
+@Table(name = "member")
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int memberId;
 
-    @Column(length = 20)
-    private String userid;
-
-    @Column(length = 20)
-    private String passwd;
-
-    @Column(length = 20)
     private String email;
 
-    @Column(length = 20)
-    private String addr;
+    private String nickname;
 
-    @Builder
-    public Member(String userid,String passwd,String email,String addr) {
-        this.userid = userid;
-        this.passwd = passwd;
-        this.email = email;
-        this.addr = addr;
-    }
+    private String password;
+
+    private String phone;
+
+    private String name;
+
+    private String ssn;
+
+    private String gender;
+
+    private LocalDateTime joinDate;
+
+    private String joinWay;
+
+    private LocalDateTime withdrawal;
+
+    private int admin;
+
+    private int volunteerScore;
+
+    private int volunteerScoreCount;
+
+    private int requestScore;
+
+    private int requestScoreCount;
+
+    private int point;
 }

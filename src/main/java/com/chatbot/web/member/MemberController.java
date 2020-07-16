@@ -9,9 +9,8 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
-@Transactional
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/members")
 public class MemberController {
     @Autowired
     MemberRepository memberRepository;
