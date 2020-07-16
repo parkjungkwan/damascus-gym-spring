@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 @RequestMapping("/member")
 public class MemberController {
     @Autowired
-    MemberRepositoryCustom memberService;
+    MemberRepository memberRepository;
     @Autowired
     EntityManager manager;
 }
