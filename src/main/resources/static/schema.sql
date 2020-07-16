@@ -18,7 +18,7 @@ CREATE TABLE member
     `request_score_count`    INT            NULL,
     `point`                  INT            NULL,
     PRIMARY KEY (member_id)
-);
+)default character set utf8 collate UTF8_GENERAL_CI;;
 CREATE TABLE article
 (
     `work_id`         INT             NOT NULL    AUTO_INCREMENT,
@@ -36,7 +36,7 @@ CREATE TABLE article
     `kakao`           VARCHAR(50)     NULL,
     `progress_state`  VARCHAR(10)     NULL,
     PRIMARY KEY (work_id)
-);
+)default character set utf8 collate UTF8_GENERAL_CI;;
 CREATE TABLE volunteer
 (
     `volunteer_id`              INT        NOT NULL    AUTO_INCREMENT,
@@ -44,7 +44,7 @@ CREATE TABLE volunteer
     `work_id`                   INT(20)    NULL,
     `volunteer_date`            DATETIME   NULL,
     PRIMARY KEY (volunteer_id)
-);
+)default character set utf8 collate UTF8_GENERAL_CI;;
 CREATE TABLE progress
 (
     `progress_id`              INT        NOT NULL    AUTO_INCREMENT,
@@ -52,4 +52,4 @@ CREATE TABLE progress
     `volunteer_id`             INT(20)    NULL,
     `finish_date`              INT(10)    NULL,
     PRIMARY KEY (progress_id)
-);
+)default character set utf8 collate UTF8_GENERAL_CI;;
