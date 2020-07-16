@@ -1,5 +1,6 @@
 package com.chatbot.web.member;
 
+import com.google.gson.JsonObject;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,18 @@ public class MemberController {
     }
     @GetMapping("/")
     public String test(){
-        return "SUCCESS";
+
+        JsonObject obj =new JsonObject();
+
+        obj.addProperty("title", "테스트3");
+        obj.addProperty("content", "테스트3 내용");
+
+        JsonObject data = new JsonObject();
+
+        data.addProperty("time", "12:00");
+
+        obj.add("data", data);
+
+        return obj.toString();
     }
 }

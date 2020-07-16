@@ -4,12 +4,9 @@ spring:
       suffix: .html
   jpa:
     show-sql: true
-    database: mysql
-    hibernate:
-      ddl-auto: update
-    generate-ddl: true
+
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://127.0.0.1:3306/mariadb
     username: mariadb
-    password: mariadbmariadb
+    password: mariadb
