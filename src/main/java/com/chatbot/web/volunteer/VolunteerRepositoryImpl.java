@@ -1,4 +1,5 @@
 package com.chatbot.web.volunteer;
 
-public class VolunteerRepositoryImpl {
+interface IVolunteerRepository{}
+public class VolunteerRepositoryImpl implements IVolunteerRepository{
 }
