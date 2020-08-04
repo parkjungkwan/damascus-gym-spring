@@ -2,10 +2,7 @@ package com.chatbot.web.volunteer;
 
 import com.chatbot.web.article.Article;
 import com.chatbot.web.member.Member;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -29,5 +26,12 @@ public class Volunteer {
     @CreationTimestamp @Column(name = "volunteer_date")
     private LocalDateTime volunteerDate;
 
-
+    @Builder
+    private Volunteer(Member member,
+                      Article article,
+                      LocalDateTime volunteerDate) {
+        this.member = member;
+        this.article = article;
+        this.volunteerDate = volunteerDate;
+    }
 }

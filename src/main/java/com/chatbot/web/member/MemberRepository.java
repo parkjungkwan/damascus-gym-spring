@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 
-interface MemberRepository extends JpaRepository<Member, Long>, CustomedMemberRepository {
+interface MemberRepository extends JpaRepository<Member, Long>, IMemberRepository {
 
 }
