@@ -25,7 +25,7 @@ public class MemberController {
                 .ok(memberRepository
                         .findAllOrderByJoinDate());
     }
-    @GetMapping("/")
+    @GetMapping("/test")
     public String test(){
 
         JsonObject obj =new JsonObject();

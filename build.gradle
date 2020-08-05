@@ -17,7 +17,6 @@ repositories {
 dependencies {
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
     compile group: 'com.h2database', name: 'h2', version: '1.4.200'
-    /*runtimeOnly("com.h2database:h2")*/
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.2.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.2.5.RELEASE'
@@ -35,14 +34,6 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.1.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-params")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.0")
-    testCompileOnly('junit:junit')
-    testRuntimeOnly('org.junit.vintage:junit-vintage-engine') {
-        because 'JUni 3 와 JUnit 4 테스트 실행을 위해 필요핟.'
-    }
-
 }
 
 test {

@@ -14,33 +14,30 @@ public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "passenger_id") private Long passengerId;
-    @Column(name = "passenger_number", nullable = false) private String passengerNumber;
-    @Column(name = "survived", nullable = false) private String survived;
-    @Column(name = "pclass") private String pclass;
+    @Column(name = "passenger_number", nullable = false) private int passengerNumber;
+    @Column(name = "survived", nullable = false) private int survived;
+    @Column(name = "pclass") private int pclass;
     @Column(name = "name") private String name;
     @Column(name = "sex") private String sex;
-    @Column(name = "age") private String age;
-    @Column(name = "sib_sp") private String sib_sp;
-    @Column(name = "parch") private String parch;
+    @Column(name = "age") private int age;
+    @Column(name = "sib_sp") private int sib_sp;
+    @Column(name = "parch") private int parch;
     @Column(name = "ticket") private String ticket;
     @Column(name = "fare") private String fare;
     @Column(name = "cabin") private String cabin;
     @Column(name = "embarked") private String embarked;
 
-    @Override
-    public String toString() {
-        return String.format("Passenger[passenger_id=%d, passenger_number='%d', name='%s']",
-                passengerId, passengerNumber, name);
-    }
+
+
     @Builder
-    private Passenger(String passengerNumber,
-                 String survived,
-                 String pclass,
+    public Passenger(int passengerNumber,
+                 int survived,
+                 int pclass,
                  String name,
                  String sex,
-                 String age,
-                 String sib_sp,
-                 String parch,
+                 int age,
+                 int sib_sp,
+                 int parch,
                  String ticket,
                  String fare,
                  String cabin,
@@ -58,4 +55,6 @@ public class Passenger {
         this.cabin = cabin;
         this.embarked = embarked;
     }
+
+
 }

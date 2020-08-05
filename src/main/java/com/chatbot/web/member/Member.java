@@ -16,14 +16,14 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id") private Long id;
-    @Column(name = "email", nullable = false) private String email;
-    @Column(name = "nickname", nullable = false) private String nickname;
+    @Column(name = "email") private String email;
+    @Column(name = "nickname") private String nickname;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @Column(name = "password", nullable = false) private String password;
-    @Column(name = "phone", nullable = false) private String phone;
-    @Column(name = "name", nullable = false) private String name;
-    @Column(name = "ssn", nullable = false) private String ssn;
-    @Column(name = "gender", nullable = false) private String gender;
+    @Column(name = "password") private String password;
+    @Column(name = "phone") private String phone;
+    @Column(name = "name") private String name;
+    @Column(name = "ssn") private String ssn;
+    @Column(name = "gender") private String gender;
     @CreationTimestamp
     @Column(name = "join_date") private LocalDateTime joinDate;
     @Column(name = "join_way", nullable = false) private String joinWay;
