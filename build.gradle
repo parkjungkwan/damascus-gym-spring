@@ -32,6 +32,7 @@ dependencies {
     compile group: 'com.amazonaws', name: 'aws-java-sdk', version: '1.11.744'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    compile group: 'org.apache.commons', name: 'commons-csv', version: '1.8'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
