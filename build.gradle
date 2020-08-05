@@ -21,6 +21,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.2.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.2.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web-services', version: '2.2.5.RELEASE'
+    annotationProcessor('org.projectlombok:lombok')
     providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.5.4'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.5.RELEASE'
@@ -33,6 +34,16 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.1.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.0")
+    testCompileOnly('junit:junit')
+    testRuntimeOnly('org.junit.vintage:junit-vintage-engine') {
+        because 'JUni 3 와 JUnit 4 테스트 실행을 위해 필요핟.'
     }
 }
 

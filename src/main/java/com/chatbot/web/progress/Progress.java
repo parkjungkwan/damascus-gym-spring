@@ -1,9 +1,6 @@
 package com.chatbot.web.progress;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -14,6 +11,12 @@ public class Progress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "progress_id")
     private Long id;
+    @Column(name = "progress_title") private String progressTitle;
+
+    @Builder
+    Progress(String progressTitle){
+        this.progressTitle = progressTitle;
+    }
 
 
 }
