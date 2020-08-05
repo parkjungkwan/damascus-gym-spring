@@ -29,7 +29,7 @@ public class Passenger {
 
 
 
-    // @Builder
+    @Builder
     public Passenger(int passengerNumber,
                  int survived,
                  int pclass,
@@ -56,10 +56,5 @@ public class Passenger {
         this.embarked = embarked;
     }
 
-    public Passenger(int passengerId, int survived, int passengerNumber,
-                     int survived1, int pclass, String name,
-                     String sex, int age, int sib_sp,
-                     int parch, String ticket, String fare,
-                     String cabin, String embarked) {
-    }
+
 }

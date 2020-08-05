@@ -13,6 +13,7 @@ interface PassengerService{
 }
 @Service
 public class PassengerServiceImpl implements PassengerService{
+    @Autowired PassengerRepository passengerRepository;
 
 
     @Override
@@ -28,11 +29,8 @@ public class PassengerServiceImpl implements PassengerService{
             BufferedReader fileReader = new BufferedReader(new InputStreamReader(is,"UTF-8"));
             CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT);
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
-
             for(CSVRecord csvRecord : csvRecords){
-                new Passenger(Integer.parseInt(csvRecord.get("PassengerId")),
-                        Integer.parseInt(csvRecord.get("Survived")),
-                        Integer.parseInt(csvRecord.get("passengerNumber")),
+                passengerRepository.save(new Passenger(Integer.parseInt(csvRecord.get("passengerNumber")),
                         Integer.parseInt(csvRecord.get("survived")),
                         Integer.parseInt(csvRecord.get("pclass")),
                         csvRecord.get("name"),
@@ -43,7 +41,8 @@ public class PassengerServiceImpl implements PassengerService{
                         csvRecord.get("ticket"),
                         csvRecord.get("fare"),
                         csvRecord.get("cabin"),
-                        csvRecord.get("embarked"));
+                        csvRecord.get("embarked")));
+
             }
         } catch (Exception e) {
             e.printStackTrace();
