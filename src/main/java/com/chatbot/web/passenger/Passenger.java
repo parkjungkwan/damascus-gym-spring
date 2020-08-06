@@ -8,13 +8,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
 @Table(name = "passenger")
+@NamedQuery(name="Passenger.findByPclass",
+query = "select e from Passenger e where e.pclass = :pclass")
 public class Passenger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "passenger_id") private Long passengerId;
-    @Column(name = "passenger_number", nullable = false) private int passengerNumber;
+    @Column(name = "passenger_id") private int passengerId;
     @Column(name = "survived", nullable = false) private int survived;
     @Column(name = "pclass") private int pclass;
     @Column(name = "name") private String name;
@@ -27,11 +27,9 @@ public class Passenger {
     @Column(name = "cabin") private String cabin;
     @Column(name = "embarked") private String embarked;
 // PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,Parch,Ticket,Fare,Cabin,Embarked
-
-
+    public Passenger(){}
     @Builder
-    public Passenger(int passengerNumber,
-                 int survived,
+    public Passenger(int survived,
                  int pclass,
                  String name,
                  String sex,
@@ -42,7 +40,6 @@ public class Passenger {
                  String fare,
                  String cabin,
                  String embarked) {
-        this.passengerNumber = passengerNumber;
         this.survived = survived;
         this.pclass = pclass;
         this.name = name;
@@ -55,6 +52,4 @@ public class Passenger {
         this.cabin = cabin;
         this.embarked = embarked;
     }
-
-
 }
