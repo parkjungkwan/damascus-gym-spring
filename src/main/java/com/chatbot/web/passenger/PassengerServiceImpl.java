@@ -9,39 +9,36 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 
 interface PassengerService{
-    public void handleCsv();
+    public void readCsv();
 }
 @Service
 public class PassengerServiceImpl implements PassengerService{
     @Autowired PassengerRepository passengerRepository;
 
-
     @Override
-    public void handleCsv(){
-        InputStream is = new InputStream() {
-            @Override
-            public int read() throws IOException {
-                return 0;
-            }
-        };
+    public void readCsv(){
+        InputStream is = getClass().getResourceAsStream("/static/train.csv");
 
         try {
             BufferedReader fileReader = new BufferedReader(new InputStreamReader(is,"UTF-8"));
             CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT);
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for(CSVRecord csvRecord : csvRecords){
-                passengerRepository.save(new Passenger(Integer.parseInt(csvRecord.get("passengerNumber")),
-                        Integer.parseInt(csvRecord.get("survived")),
-                        Integer.parseInt(csvRecord.get("pclass")),
-                        csvRecord.get("name"),
-                        csvRecord.get("sex"),
-                        Integer.parseInt("age"),
-                        Integer.parseInt("sib_sp"),
-                        Integer.parseInt("parch"),
-                        csvRecord.get("ticket"),
-                        csvRecord.get("fare"),
-                        csvRecord.get("cabin"),
-                        csvRecord.get("embarked")));
+                // PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,
+                // Parch,Ticket,Fare,Cabin,Embarked
+                passengerRepository.save(new Passenger(
+                        Integer.parseInt(csvRecord.get(0)),
+                        Integer.parseInt(csvRecord.get(1)),
+                        Integer.parseInt(csvRecord.get(2)),
+                        csvRecord.get(3),
+                        csvRecord.get(4),
+                        csvRecord.get(5),
+                        csvRecord.get(6),
+                        csvRecord.get(7),
+                        csvRecord.get(8),
+                        csvRecord.get(9),
+                        csvRecord.get(10),
+                        csvRecord.get(11)));
 
             }
         } catch (Exception e) {
