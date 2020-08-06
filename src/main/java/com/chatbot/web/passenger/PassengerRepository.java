@@ -40,11 +40,11 @@ public interface PassengerRepository extends JpaRepository<Passenger, Integer>, 
 
     @Query("select e from #{#entityName} e where e.name = :name1 or e.name = :name2")
     List<Passenger> findByNames(@Param("name1") String name1,
-                               @Param("name2") String name2);
+                                @Param("name2") String name2);
     @Modifying
     @Query("update Passenger e set e.name = :name where e.age = :age")
     int updateAgeForNameFromPassenger(@Param("name") String name,
-                                       @Param("age") String age);
+                                      @Param("age") String age);
 
     void deleteByPassengerId(String passengerId);
 

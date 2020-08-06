@@ -10,7 +10,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity @Getter @Setter @ToString @NoArgsConstructor
+@Entity @Getter @Setter @ToString @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor @Builder
 @Table(name = "member", uniqueConstraints = {@UniqueConstraint(columnNames = {"nickname"})})
 public class Member {
     @Id
@@ -39,35 +40,6 @@ public class Member {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Volunteer> volunteers;
 
-    @Builder
-    private Member(String email,
-                   String nickname,
-                    String password,
-                    String phone,
-                    String name,
-                    String ssn,
-                    String gender,
-                   LocalDateTime joinDate,
-                   String joinWay,
-                   LocalDateTime withdrawal,
-                    int admin,
-                    int volunteerScore,
-                    int requestScoreCount,
-                   int point) {
-        this.email = email;
-        this.nickname = nickname;
-        this.password = password;
-        this.phone = phone;
-        this.name = name;
-        this.ssn = ssn;
-        this.gender = gender;
-        this.joinDate = joinDate;
-        this.joinWay = joinWay;
-        this.withdrawal = withdrawal;
-        this.admin = admin;
-        this.volunteerScore = volunteerScore;
-        this.requestScoreCount = requestScoreCount;
-        this.point = point;
-    }
+
 }
 

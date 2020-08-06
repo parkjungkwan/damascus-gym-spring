@@ -22,8 +22,8 @@ public class ProgressControllerTest {
     @Test
     public void getHello() throws Exception {
 
-        ResponseEntity<String> response = restTemplate.getForEntity(new URL("http://localhost:" + port + "/").toString(), String.class);
-        assertEquals("Hello Controller", response.getBody());
+        ResponseEntity<String> response = restTemplate.getForEntity(new URL("http://localhost:" + port + "/progresses/hello").toString(), String.class);
+        assertEquals("hello", response.getBody());
 
     }
 }

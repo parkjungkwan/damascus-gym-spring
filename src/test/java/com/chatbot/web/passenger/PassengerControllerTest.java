@@ -24,7 +24,7 @@ class PassengerControllerTest {
     @Test
     void findBySurvived()  throws Exception{
         Passenger passenger = Passenger.builder()
-                .name("홍길동") .name("갓대희") .build(); //given given(testService.selectOneMember("goddaehee")) .willReturn(testVo); //when final ResultActions actions = mvc.perform(get("/testValue2") .contentType(MediaType.APPLICATION_JSON)) .andDo(print()); //then actions .andExpect(status().isOk()) .andExpect(content().contentType(MediaType.APPLICATION_JSON)) .andExpect(jsonPath("$.name", is("갓대희"))) .andDo(print());
+                .name("John")  .build(); //given given(testService.selectOneMember("goddaehee")) .willReturn(testVo); //when final ResultActions actions = mvc.perform(get("/testValue2") .contentType(MediaType.APPLICATION_JSON)) .andDo(print()); //then actions .andExpect(status().isOk()) .andExpect(content().contentType(MediaType.APPLICATION_JSON)) .andExpect(jsonPath("$.name", is("갓대희"))) .andDo(print());
     }
 
     @Test

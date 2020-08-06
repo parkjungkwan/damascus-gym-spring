@@ -27,6 +27,8 @@ public class QPassenger extends EntityPathBase<Passenger> {
 
     public final StringPath fare = createString("fare");
 
+    public final StringPath gender = createString("gender");
+
     public final StringPath name = createString("name");
 
     public final StringPath parch = createString("parch");
@@ -35,9 +37,7 @@ public class QPassenger extends EntityPathBase<Passenger> {
 
     public final NumberPath<Integer> pclass = createNumber("pclass", Integer.class);
 
-    public final StringPath sex = createString("sex");
-
-    public final StringPath sib_sp = createString("sib_sp");
+    public final StringPath sibSp = createString("sibSp");
 
     public final NumberPath<Integer> survived = createNumber("survived", Integer.class);
 

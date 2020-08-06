@@ -21,6 +21,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: '2.2.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-devtools', version: '2.2.5.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web-services', version: '2.2.5.RELEASE'
+    annotationProcessor('org.projectlombok:lombok')
     providedCompile group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
     compile group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.5.4'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.2.5.RELEASE'
