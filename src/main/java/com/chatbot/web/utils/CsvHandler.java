@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import au.com.bytecode.opencsv.CSVReader;
-public class CsvHandler {
-    private String filename = "/mycsv.csv";
+import org.springframework.stereotype.Service;
 
+@Service
+public class CsvHandler {
     public List<String []> readCsv() {
-        System.out.print(">>>>>>>> "+filename);
+        InputStream in = getClass().getResourceAsStream("/static/train.csv");
         List<String[]> data = new ArrayList<String[]>();
         try {
-            CSVReader reader = new CSVReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"), ',', '"', 1);
+            CSVReader reader = new CSVReader(new InputStreamReader(in, "UTF-8"), ',', '"', 1);
             String[] s;
             while ((s = reader.readNext()) != null) {
                 data.add(s);
