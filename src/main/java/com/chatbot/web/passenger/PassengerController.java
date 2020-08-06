@@ -1,6 +1,7 @@
 package com.chatbot.web.passenger;
 
 import com.chatbot.web.utils.Box;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +18,6 @@ public class PassengerController {
     public PassengerController(PassengerService passengerService) {
         this.passengerService = passengerService;
     }
-
     @GetMapping("/csv")
     public void csvRead(){ passengerService.readCsv(); }
     @GetMapping("/survived/{survived}")
