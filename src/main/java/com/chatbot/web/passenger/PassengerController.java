@@ -12,6 +12,6 @@ public class PassengerController {
     @Autowired PassengerService passengerService;
     @GetMapping("/csv")
     public void csvRead(){
-        passengerService.readCsv();
+        //passengerService.readCsv();
     }
 }
