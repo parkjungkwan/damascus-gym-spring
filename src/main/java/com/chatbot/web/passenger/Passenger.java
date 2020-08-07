@@ -1,9 +1,9 @@
 package com.chatbot.web.passenger;
 /*
 Variable Notes
-// 0-PassengerId, 1-Survived,2-Pclass,3-Name,4-Gender,
-// 5-Age,6-SibSp, 7-Parch, 8-Ticket, 9-Fare,
-// 10-Cabin, 11-Embarked
+* 0-PassengerId, 1-Survived,2-Pclass,3-Name,4-Gender,
+* 5-Age,6-SibSp, 7-Parch, 8-Ticket, 9-Fare,
+* 10-Cabin, 11-Embarked
 1-PassengerId: Primary Key
 2-pclass: Ticket class
 A proxy for socio-economic status (SES)
@@ -15,7 +15,6 @@ A proxy for socio-economic status (SES)
 The dataset defines family relations in this way...
 Sibling = brother, sister, stepbrother, stepsister
 Spouse = husband, wife (mistresses and fiancés were ignored)
-
 7-parch: # of parents / children aboard the Titanic
 The dataset defines family relations in this way...
 Parent = mother, father
@@ -35,7 +34,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @Table(name = "passenger")
-@NamedQuery(name="Passenger.findByPclass",
+@NamedQuery(name="Passenger.selectByPclass",
         query = "select e from Passenger e where e.pclass = :pclass")
 public class Passenger {
     @Id

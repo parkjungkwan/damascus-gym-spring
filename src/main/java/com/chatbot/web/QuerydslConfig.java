@@ -17,3 +17,12 @@ public class QuerydslConfig {
         return new JPAQueryFactory(entityManager);
     }
 }
+
+/*
+querydsl category
+1- JPAQuery : EntityManager 담당, JPQL 사용
+2- JPAQueryFactory : EntityManager 담당, JPQL 사용
+3- JPASQLQuery : : EntityManager 담당, SQL 사용
+4- SQLQuery : JDBC 담당, SQL 사용
+5- SQLQueryFactory : JDBC 담당, SQL 사용
+* */

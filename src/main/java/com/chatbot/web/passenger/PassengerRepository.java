@@ -9,14 +9,17 @@ import org.springframework.scheduling.annotation.Async;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
+/*
+0-PassengerId, 1-Survived,2-Pclass,3-Name,4-Gender,
+5-Age,6-SibSp, 7-Parch, 8-Ticket, 9-Fare,
+10-Cabin, 11-Embarked
+* */
 
-// PassengerId,Survived,Pclass,Name,Sex,Age,SibSp,
-// Parch,Ticket,Fare,Cabin,Embarked
 public interface PassengerRepository extends JpaRepository<Passenger, Integer>, IPassengerRepository{
-    /* 공통 인터페이스 기능
+    /* 1. 공통 인터페이스 구현은 JpaService 통해 구함
      save(S), findOne(ID), exists(ID), count, delete(T)*/
 
-    /* QueryMethod 기능
+    /* 2. QueryMethod 기능
     And, Or, Is.Equals, Between, LessThan, GreaterThan, GreaterThanEqual,
     After, Before, IsNull, IsNotNull, Like, NotLike, StartingWith,
     EndingWith, Containing, OrderBy, NotIn, TRUE, FALSE, IgnoreCore* */
@@ -24,23 +27,23 @@ public interface PassengerRepository extends JpaRepository<Passenger, Integer>, 
     List<Passenger> findBySurvived(int survived);
     Passenger findByPassengerId(int passengerId);
 
-    /* Named Query 구현 */
-    List<Passenger> findByPclass(@Param("pclass") String pclass);
+    /* 3. Named Query 구현 */
+    List<Passenger> selectByPclass(@Param("pclass") String pclass);
 
-    /* Anonoymous Named Query 구현*/
+    /* 4. Anonoymous Named Query 구현*/
     @Query("select e from Passenger e")
-    Stream<Passenger> findAllStream();
+    Stream<Passenger> selectAllStream();
 
-    @Async CompletableFuture<Passenger> findByName(String name);
+    // @Async CompletableFuture<Passenger> selectByName(String name);
 
     List<Passenger> findByEmbarked(String embarked);
 
     @Query(value = "SELECT * FROM Passenger WHERE age = :age", nativeQuery = true)
-    List<Passenger> findByPassenger(@Param("age")String age);
+    List<Passenger> selectByPassenger(@Param("age")String age);
 
-    @Query("select e from #{#entityName} e where e.name = :name1 or e.name = :name2")
-    List<Passenger> findByNames(@Param("name1") String name1,
-                                @Param("name2") String name2);
+    @Query("select e from #{#entityName} e where e.cabin = :cabin or e.embarked = :embarked")
+    List<Passenger> selectByCabinAndEmbarked(@Param("cabin") String cabin,
+                                @Param("embarked") String embarked);
     @Modifying
     @Query("update Passenger e set e.name = :name where e.age = :age")
     int updateAgeForNameFromPassenger(@Param("name") String name,
@@ -53,6 +56,9 @@ public interface PassengerRepository extends JpaRepository<Passenger, Integer>, 
     void deletePassenger(@Param("passengerId")String passengerId);
 
     @Query("select e from Passenger e")
-    List<Passenger> findAllPassenger();
+    List<Passenger> selectAllPassenger();
+    /*
+    querydsl 구현은 IPassengerRepository 통함
+    * */
 
 }
