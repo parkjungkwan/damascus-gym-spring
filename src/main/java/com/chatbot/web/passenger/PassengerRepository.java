@@ -1,13 +1,12 @@
 package com.chatbot.web.passenger;
 
+import com.chatbot.web.employment.Passenger;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.scheduling.annotation.Async;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 /*
 0-PassengerId, 1-Survived,2-Pclass,3-Name,4-Gender,

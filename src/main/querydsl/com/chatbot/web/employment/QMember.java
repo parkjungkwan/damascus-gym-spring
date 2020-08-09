@@ -1,4 +1,4 @@
-package com.chatbot.web.member;
+package com.chatbot.web.employment;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
@@ -48,7 +48,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath ssn = createString("ssn");
 
-    public final ListPath<com.chatbot.web.volunteer.Volunteer, com.chatbot.web.volunteer.QVolunteer> volunteers = this.<com.chatbot.web.volunteer.Volunteer, com.chatbot.web.volunteer.QVolunteer>createList("volunteers", com.chatbot.web.volunteer.Volunteer.class, com.chatbot.web.volunteer.QVolunteer.class, PathInits.DIRECT2);
+    public final ListPath<Volunteer, com.chatbot.web.volunteer.QVolunteer> volunteers = this.<Volunteer, com.chatbot.web.volunteer.QVolunteer>createList("volunteers", Volunteer.class, com.chatbot.web.volunteer.QVolunteer.class, PathInits.DIRECT2);
 
     public final NumberPath<Integer> volunteerScore = createNumber("volunteerScore", Integer.class);
 

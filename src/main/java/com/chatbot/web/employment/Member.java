@@ -1,6 +1,5 @@
-package com.chatbot.web.member;
+package com.chatbot.web.employment;
 
-import com.chatbot.web.volunteer.Volunteer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;

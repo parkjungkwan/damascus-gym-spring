@@ -1,15 +1,11 @@
-package com.chatbot.web.member;
+package com.chatbot.web.employment;
 
-import com.chatbot.web.utils.JpaService;
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.chatbot.web.utils.GenericService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-interface MemberService extends JpaService<Member> {
+interface MemberService extends GenericService<Member> {
 
 
 }

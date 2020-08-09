@@ -2,6 +2,7 @@ package com.chatbot.web.passenger;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.chatbot.web.employment.Passenger;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;

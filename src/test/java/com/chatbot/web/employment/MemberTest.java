@@ -1,4 +1,4 @@
-package com.chatbot.web.member;
+package com.chatbot.web.employment;
 
 import org.junit.jupiter.api.Test;
 

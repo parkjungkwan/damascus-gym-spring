@@ -2,6 +2,7 @@ package com.chatbot.web.article;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.chatbot.web.employment.Volunteer;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -36,7 +37,7 @@ public class QArticle extends EntityPathBase<Article> {
 
     public final NumberPath<Integer> totalSalary = createNumber("totalSalary", Integer.class);
 
-    public final ListPath<com.chatbot.web.volunteer.Volunteer, com.chatbot.web.volunteer.QVolunteer> volunteers = this.<com.chatbot.web.volunteer.Volunteer, com.chatbot.web.volunteer.QVolunteer>createList("volunteers", com.chatbot.web.volunteer.Volunteer.class, com.chatbot.web.volunteer.QVolunteer.class, PathInits.DIRECT2);
+    public final ListPath<Volunteer, com.chatbot.web.volunteer.QVolunteer> volunteers = this.<Volunteer, com.chatbot.web.volunteer.QVolunteer>createList("volunteers", Volunteer.class, com.chatbot.web.volunteer.QVolunteer.class, PathInits.DIRECT2);
 
     public final StringPath workAge = createString("workAge");
 

@@ -1,7 +1,8 @@
 package com.chatbot.web.passenger;
 
+import com.chatbot.web.employment.Passenger;
 import com.chatbot.web.utils.Box;
-import com.chatbot.web.utils.JpaService;
+import com.chatbot.web.utils.GenericService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -11,7 +12,7 @@ import java.io.*;
 import java.util.List;
 import java.util.Optional;
 
-interface PassengerService extends JpaService<Passenger> {
+interface PassengerService extends GenericService<Passenger> {
     // QueryMethod 구현
     public Box<List<Passenger>> findBySurvived(int survived);
     public void readCsv();

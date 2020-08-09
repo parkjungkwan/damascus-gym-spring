@@ -1,8 +1,8 @@
 package com.chatbot.web.passenger;
 
+import com.chatbot.web.employment.Passenger;
 import com.chatbot.web.utils.Box;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

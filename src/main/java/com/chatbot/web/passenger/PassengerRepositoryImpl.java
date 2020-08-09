@@ -1,6 +1,8 @@
 package com.chatbot.web.passenger;
 
 import static com.chatbot.web.passenger.QPassenger.passenger;
+
+import com.chatbot.web.employment.Passenger;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.querydsl.jpa.impl.JPAUpdateClause;
@@ -9,7 +11,6 @@ import com.querydsl.sql.Configuration;
 import com.querydsl.sql.DerbyTemplates;
 import com.querydsl.sql.SQLQueryFactory;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
-import com.querydsl.sql.SQLTemplates;
 import org.springframework.stereotype.Repository;
 import javax.sql.DataSource;
 import javax.persistence.EntityManager;

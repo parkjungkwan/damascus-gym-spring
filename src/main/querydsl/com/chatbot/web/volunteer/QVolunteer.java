@@ -2,6 +2,7 @@ package com.chatbot.web.volunteer;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
+import com.chatbot.web.employment.Volunteer;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -26,7 +27,7 @@ public class QVolunteer extends EntityPathBase<Volunteer> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final com.chatbot.web.member.QMember member;
+    public final com.chatbot.web.employment.QMember member;
 
     public final DateTimePath<java.time.LocalDateTime> volunteerDate = createDateTime("volunteerDate", java.time.LocalDateTime.class);
 
@@ -49,7 +50,7 @@ public class QVolunteer extends EntityPathBase<Volunteer> {
     public QVolunteer(Class<? extends Volunteer> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.article = inits.isInitialized("article") ? new com.chatbot.web.article.QArticle(forProperty("article")) : null;
-        this.member = inits.isInitialized("member") ? new com.chatbot.web.member.QMember(forProperty("member")) : null;
+        this.member = inits.isInitialized("member") ? new com.chatbot.web.employment.QMember(forProperty("member")) : null;
     }
 
 }

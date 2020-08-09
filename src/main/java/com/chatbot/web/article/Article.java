@@ -1,6 +1,6 @@
 package com.chatbot.web.article;
 
-import com.chatbot.web.volunteer.Volunteer;
+import com.chatbot.web.employment.Volunteer;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
