@@ -4,3 +4,7 @@ interface EmploymentRepository extends JpaRepository<Member, Long>, IMemberRepos
 }
 interface VolunteerRepository extends JpaRepository<Volunteer, Long>, IVolunteerRepository {
 }
+interface ProgressRepository extends JpaRepository<Progress, Long>, IProgressRepository {
+}
+interface ArticleRepository extends JpaRepository<Article, Long> {
+}

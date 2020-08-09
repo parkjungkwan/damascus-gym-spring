@@ -1,4 +1,4 @@
-package com.chatbot.web.progress;
+package com.chatbot.web.employment;
 
 import lombok.*;
 

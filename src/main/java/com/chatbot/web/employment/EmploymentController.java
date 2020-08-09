@@ -39,5 +39,9 @@ public class EmploymentController {
 
         return obj.toString();
     }
+    @GetMapping("/hello")
+    public String hello(){
+        return "hello";
+    }
 
 }

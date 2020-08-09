@@ -1,7 +1,5 @@
 package com.chatbot.web.employment;
 
-import com.chatbot.web.article.Article;
-import com.chatbot.web.employment.Member;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 

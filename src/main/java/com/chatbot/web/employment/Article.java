@@ -1,4 +1,4 @@
-package com.chatbot.web.article;
+package com.chatbot.web.employment;
 
 import com.chatbot.web.employment.Volunteer;
 import lombok.*;
