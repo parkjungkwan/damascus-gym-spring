@@ -11,7 +11,6 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,21 +29,42 @@ import javax.transaction.Transactional;
 public class CoachController {
 // ChallengeController
     private final ChallengeRepository challengeRepository;
+    private final CoachRepository coachRepository;
+    private final DiaryRepository diaryRepository;
+    private final ExerciseRepository exerciseRepository;
+    private final FoodRepository foodRepository;
+    private final GymRepository gymRepository;
+    private final MealRepository mealRepository;
+    private final MemberRepository memberRepository;
+    private final MyChallengeRepository myChallengeRepository;
+    private final MyExerciseRepository myExerciseRepository;
+    private final ReportRepository reportRepository;
+    @PersistenceContext
+    EntityManager entity;
+
 
     public CoachController(ChallengeRepository challengeRepository, CoachRepository coachRepository,
+                           DiaryRepository diaryRepository, MyChallengeRepository myChallengeRepository,
                            ExerciseRepository exerciseRepository, FoodRepository foodRepository,
                            GymRepository gymRepository, MealRepository mealRepository,
+                           MyExerciseRepository myExerciseRepository,ReportRepository reportRepository,
                            MemberRepository memberRepository, MyExerciseRepository repo) {
         this.challengeRepository = challengeRepository;
         this.coachRepository = coachRepository;
+        this.diaryRepository = diaryRepository;
         this.exerciseRepository = exerciseRepository;
         this.foodRepository = foodRepository;
         this.gymRepository = gymRepository;
         this.mealRepository = mealRepository;
         this.memberRepository = memberRepository;
-        this.repo = repo;
+        this.myChallengeRepository = myChallengeRepository;
+        this.reportRepository = reportRepository;
+        this.myExerciseRepository = myExerciseRepository;
     }
-
+    /********************************************
+     * ChallengeController
+     *
+     ********************************************/
     //챌린지 이름 내용 넣기
     @PostMapping("/insert")
     public HashMap<String ,String > insertChallenge(@RequestBody Challenge challenge){
@@ -68,8 +88,11 @@ public class CoachController {
         return "성공";
     }
 
-    private final CoachRepository coachRepository;
 
+    /********************************************
+     * CoachController
+     *
+     ********************************************/
     @PostMapping("/insert/{memberId}/{gymId}")
     public Coach insertForm(@RequestBody Coach coach, @PathVariable Member memberId, @PathVariable Gym gymId) {
         coach.setMemberId(memberId);
@@ -128,7 +151,11 @@ public class CoachController {
         map.put("result", "update sucess");
         return map;
     }
-    private DiaryRepository diaryRepository;
+    /********************************************
+     * DiaryController
+     *
+     ********************************************/
+
 
     @PostMapping("/{memberId}")
     public HashMap<String, String> postDiary(@RequestBody Diary diaries, @PathVariable Member memberId){
@@ -178,8 +205,11 @@ public class CoachController {
         map.put("RESULT", "다이어리 삭제 성공");
         return map;
     }
-    private final ExerciseRepository exerciseRepository;
 
+    /********************************************
+     * ExerciseController
+     *
+     ********************************************/
     // 운동 루틴 데이터 입력
     @PostMapping("/insert")
     public HashMap<String, String> insertExercise(@RequestBody Exercise exercise,
@@ -205,8 +235,11 @@ public class CoachController {
     public List<Exercise> findGroupByExerciseName() {
         return exerciseRepository.findGroupByExerciseName();
     }
-    private final FoodRepository foodRepository;
 
+    /********************************************
+     * FoodController
+     *
+     ********************************************/
     @PostMapping("")
     public HashMap<String, String> postFood(@RequestBody Food foods) {
         HashMap<String, String> map = new HashMap<>();
@@ -247,10 +280,11 @@ public class CoachController {
         map.put("RESULT", "푸드 삭제 성공");
         return map;
     }
-    private final GymRepository gymRepository;
-    @PersistenceContext
-    EntityManager entity;
 
+    /********************************************
+     * GymController
+     *
+     ********************************************/
 
     @PostMapping("/insert")
     public Gym insertForm(@RequestBody Gym gyms) {
@@ -317,8 +351,11 @@ public class CoachController {
         // .fetch()
         // .forEach(arr -> list.add(arr));
     }
-    private final MealRepository mealRepository;
 
+    /********************************************
+     * MealController
+     *
+     ********************************************/
     @PostMapping("")
     public HashMap<String, String> postMeal(@RequestBody Meal meal) {
         HashMap<String, String> map = new HashMap<>();
@@ -393,8 +430,11 @@ public class CoachController {
         map.put("RESULT", "식사 삭제 성공");
         return map;
     }
-    private final MemberRepository memberRepository;
 
+    /********************************************
+     * MemberController
+     *
+     ********************************************/
     //member회원가입 local
     @PostMapping("/join")
     public HashMap<String, String> join(@RequestBody Member members){
@@ -467,13 +507,16 @@ public class CoachController {
         map.put("result", "member delete success");
         return map;
     }
-    @Autowired
-    MyChallengeRepository myChallengeRepository;
-    @Autowired MyExerciseRepository myExerciseRepository;
+    /********************************************
+     * MyChallengeController
+     *
+     ********************************************/
+
+
 
     // 커스터마이징한 챌린지 값 넣기
     @PostMapping("/insert/{memberId}")
-    public HashMap<String, String> insertMyChallenges(@RequestBody MyChallenge myChallenge,
+    public HashMap<String, String> insertMyChallenge(@RequestBody MyChallenge myChallenge,
                                                       @PathVariable Member memberId) {
         HashMap<String, String> map = new HashMap<>();
 
@@ -497,26 +540,29 @@ public class CoachController {
     public MyChallenge findFirstByOrderByMyChallengeIdDesc(){
         return myChallengeRepository.findFirstByOrderByMyChallengeIdDesc();
     }
-    private final MyExerciseRepository repo;
+    /********************************************
+     * MyExerciseController
+     *
+     ********************************************/
 
     @PostMapping("")
     public HashMap<String, String> postMyExercise(@RequestBody MyExercise myExercise){
         HashMap<String, String> map = new HashMap<>();
-        repo.save(myExercise);
+        myExerciseRepository.save(myExercise);
         map.put("RESULT", "멤버 운동 등록 성공");
         return map;
     }
 
     @GetMapping("/find/{myExerciseDate}")
     public Iterable<MyExercise> findByMyExerciseDate(@PathVariable String myExerciseDate){
-        return repo.findByMyExerciseDate(myExerciseDate);
+        return myExerciseRepository.findByMyExerciseDate(myExerciseDate);
     }
 
     @PutMapping("/update/{myExerciseId}")
     public HashMap<String, String> updateMyExercise(@PathVariable String myExerciseId, @RequestBody MyExercise myExercise){
         HashMap<String, String> map = new HashMap<>();
         MyExercise tempMem = new MyExercise();
-        Optional<MyExercise> optMem = repo.findById(Long.parseLong(myExerciseId));
+        Optional<MyExercise> optMem = myExerciseRepository.findById(Long.parseLong(myExerciseId));
         if(optMem.isPresent()){
             tempMem = optMem.get();
         }
@@ -526,7 +572,7 @@ public class CoachController {
         tempMem.setMyExerciseTime(myExercise.getMyExerciseTime());
         tempMem.setMyExerciseCal(myExercise.getMyExerciseCal());
         tempMem.setMyExerciseComplete(myExercise.getMyExerciseComplete());
-        repo.save(tempMem);
+        myExerciseRepository.save(tempMem);
         map.put("RESULT", "멤버 운동 수정 성공");
         return map;
     }
@@ -535,7 +581,7 @@ public class CoachController {
     public HashMap<String, String> updateMyExercise2(@PathVariable String myExerciseId, @RequestBody MyExercise myExercise){
         HashMap<String, String> map = new HashMap<>();
         MyExercise tempMem = new MyExercise();
-        Optional<MyExercise> optMem = repo.findById(Long.parseLong(myExerciseId));
+        Optional<MyExercise> optMem = myExerciseRepository.findById(Long.parseLong(myExerciseId));
         if(optMem.isPresent()){
             tempMem = optMem.get();
         }
@@ -547,7 +593,7 @@ public class CoachController {
         tempMem.setMyExerciseComplete(myExercise.getMyExerciseComplete());
         tempMem.setMyExerciseDate(myExercise.getMyExerciseDate());
 
-        repo.save(tempMem);
+        myExerciseRepository.save(tempMem);
         map.put("RESULT", "멤버 운동 수정 성공");
         return map;
     }
@@ -555,7 +601,7 @@ public class CoachController {
     @DeleteMapping("/delete/{myExerciseId}")
     public HashMap<String, String> deleteMyExercise(@PathVariable String myExerciseId){
         HashMap<String, String> map = new HashMap<>();
-        repo.deleteById(Long.parseLong(myExerciseId));
+        myExerciseRepository.deleteById(Long.parseLong(myExerciseId));
         map.put("RESULT", "멤버 운동 삭제 성공");
         return map;
     }
@@ -569,7 +615,7 @@ public class CoachController {
 
     //     myExercises.setMemberId(memberId);
     //     myExercises.setExerciseId(exerciseId);
-    //     repo.save(myExercises);
+    //     myExerciseRepository.save(myExercises);
 
     //     map.put("result","memEx insert success");
     //     return map;
@@ -586,7 +632,7 @@ public class CoachController {
         myExercises.setMyChallengeId(myChallengeId);
         myExercises.setMemberId(memberId);
         myExercises.setExerciseId(exerciseId);
-        repo.save(myExercises);
+        myExerciseRepository.save(myExercises);
 
         map.put("result","memEx insert success");
         return map;
@@ -602,7 +648,7 @@ public class CoachController {
 
         myExercises.setMemberId(memberId);
         myExercises.setExerciseId(exerciseId);
-        repo.save(myExercises);
+        myExerciseRepository.save(myExercises);
 
         map.put("result","memEx insert success");
         return map;
@@ -611,10 +657,13 @@ public class CoachController {
     // findByMyChallengeId
     @GetMapping("/findbymychallengeid/{myChallengeId}")
     public List<MyExercise> findByMyChallengeId(@PathVariable MyChallenge myChallengeId){
-        return repo.findByMyChallengeId(myChallengeId);
+        return myExerciseRepository.findByMyChallengeId(myChallengeId);
     }
-    private ReportRepository reportRepository;
 
+    /********************************************
+     * ReportController
+     *
+     ********************************************/
     @PostMapping("")
     public HashMap<String, String> postReport(@RequestBody Report reports) {
         HashMap<String, String> map = new HashMap<>();
@@ -642,7 +691,7 @@ public class CoachController {
     @DeleteMapping("/delete/{reportId}")
     public HashMap<String, String> deleteReport(@PathVariable String reportId){
         HashMap<String, String> map = new HashMap<>();
-        repo.deleteById(Long.parseLong(reportId));
+        reportRepository.deleteById(Long.parseLong(reportId));
         map.put("RESULT", "리포트 삭제 성공");
         return map;
     }
@@ -655,7 +704,10 @@ public class CoachController {
     // }
 
 
-// UploadController
+    /********************************************
+     * FileUploadController
+     *
+     ********************************************/
    @PostMapping("")
     public String handleUpload(@RequestParam("file") MultipartFile uploadFile) throws Exception {
         String newFileName = "";
