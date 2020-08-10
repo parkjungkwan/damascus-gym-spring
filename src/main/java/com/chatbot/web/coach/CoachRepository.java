@@ -8,14 +8,14 @@ import java.util.Optional;
 
 interface ChallengeRepository extends JpaRepository<Challenge, Long> { }
 interface CoachRepository extends JpaRepository<Coach, Long>{
-    boolean existsByMemberId(Member memberId);
-    Coach findByMemberId(Member memberId);
+    boolean existsByMemberId(GymMember gymMemberId);
+    Coach findByMemberId(GymMember gymMemberId);
     boolean existsByCoachId(Coach coacheId);
 }
 interface DiaryRepository extends JpaRepository<Diary, Long> {
-    boolean existsByMemberIdAndDiaryDate(Member memberId, String diaryDate);
-    Diary findByDiaryDateAndMemberId(String diaryDate, Member memberId);
-    List<Diary> findByMemberId(Member memberId);
+    boolean existsByMemberIdAndDiaryDate(GymMember gymMemberId, String diaryDate);
+    Diary findByDiaryDateAndMemberId(String diaryDate, GymMember gymMemberId);
+    List<Diary> findByMemberId(GymMember gymMemberId);
 }
 interface ExerciseRepository extends JpaRepository<Exercise, Long> {
     List<Exercise> findByChallengeId(Challenge challengeId);
@@ -27,11 +27,11 @@ interface GymRepository extends JpaRepository<Gym, Long>, QuerydslPredicateExecu
 interface MealRepository extends JpaRepository<Meal, Long> {
     Iterable<Meal> findByMealDate(String mealDate);
 }
-interface MemberRepository extends JpaRepository<Member, Long> {
-    Optional<Member> findByMemberEmailAndMemberPw(String email, String pw);
+interface MemberRepository extends JpaRepository<GymMember, Long> {
+    Optional<GymMember> findByMemberEmailAndMemberPw(String email, String pw);
 }
 interface MyChallengeRepository extends JpaRepository<MyChallenge, Long>{
-    List<MyChallenge> findByMemberId(Member memberId);
+    List<MyChallenge> findByMemberId(GymMember gymMemberId);
     MyChallenge findFirstByOrderByMyChallengeIdDesc();
 }
 interface MyExerciseRepository extends JpaRepository<MyExercise, Long> {

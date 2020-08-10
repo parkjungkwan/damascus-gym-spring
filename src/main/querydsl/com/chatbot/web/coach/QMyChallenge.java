@@ -22,7 +22,7 @@ public class QMyChallenge extends EntityPathBase<MyChallenge> {
 
     public static final QMyChallenge myChallenge = new QMyChallenge("myChallenge");
 
-    public final QMember memberId;
+    public final QGymMember gymMemberId;
 
     public final NumberPath<Long> myChallengeId = createNumber("myChallengeId", Long.class);
 
@@ -48,7 +48,7 @@ public class QMyChallenge extends EntityPathBase<MyChallenge> {
 
     public QMyChallenge(Class<? extends MyChallenge> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.memberId = inits.isInitialized("memberId") ? new QMember(forProperty("memberId")) : null;
+        this.gymMemberId = inits.isInitialized("gymMemberId") ? new QGymMember(forProperty("gymMemberId")) : null;
     }
 
 }

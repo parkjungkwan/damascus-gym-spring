@@ -40,7 +40,7 @@ public class Meal implements Serializable{
     @Column(name = "meal_cal") private String mealCal;
 
     @ManyToOne
-    @JoinColumn(name = "member_id") private Member memberId;
+    @JoinColumn(name = "member_id") private GymMember gymMemberId;
 
     @ManyToOne
     @JoinColumn(name = "food_id") private Food foodId;

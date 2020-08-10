@@ -44,7 +44,7 @@ public class MyChallenge  implements Serializable{
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "member_id")
-    private Member memberId;
+    private GymMember gymMemberId;
 
     @OneToMany(mappedBy = "myChallengeId")
     @JsonIgnore

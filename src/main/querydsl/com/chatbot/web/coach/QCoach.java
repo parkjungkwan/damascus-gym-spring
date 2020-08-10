@@ -48,7 +48,7 @@ public class QCoach extends EntityPathBase<Coach> {
 
     public final QGym gymId;
 
-    public final QMember memberId;
+    public final QGymMember gymMemberId;
 
     public QCoach(String variable) {
         this(Coach.class, forVariable(variable), INITS);
@@ -69,7 +69,7 @@ public class QCoach extends EntityPathBase<Coach> {
     public QCoach(Class<? extends Coach> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.gymId = inits.isInitialized("gymId") ? new QGym(forProperty("gymId")) : null;
-        this.memberId = inits.isInitialized("memberId") ? new QMember(forProperty("memberId")) : null;
+        this.gymMemberId = inits.isInitialized("gymMemberId") ? new QGymMember(forProperty("gymMemberId")) : null;
     }
 
 }

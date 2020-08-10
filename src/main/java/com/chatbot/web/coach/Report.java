@@ -41,7 +41,7 @@ public class Report implements Serializable{
     @Column(name = "report_cal_in") private String reportCalIn;
 
     @ManyToOne
-    @JoinColumn(name = "member_id") private Member memberId;
+    @JoinColumn(name = "member_id") private GymMember gymMemberId;
 
     @Builder
     private Report(String reportDate, String reportCalOut, String reportCalIn){

@@ -425,8 +425,6 @@ public class GramController {
     private String memberId;
     public String getAmount(){return this.amount;}
     public String getMemberId(){return this.memberId;}
-
-    @Setter(onMethod_= @Autowired)
     private KakaoPay kakaoPay;
 
     @GetMapping("/kakaoPay")

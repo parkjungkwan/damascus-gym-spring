@@ -47,7 +47,7 @@ public class MyExercise  implements Serializable{
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "member_id") private Member memberId;
+    @JoinColumn(name = "member_id") private GymMember gymMemberId;
 
     @ManyToOne
     @JoinColumn(name = "exercise_id") private Exercise exerciseId;

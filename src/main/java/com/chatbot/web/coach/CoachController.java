@@ -93,16 +93,16 @@ public class CoachController {
      * CoachController
      *
      ********************************************/
-    @PostMapping("/insert/{memberId}/{gymId}")
-    public Coach insertForm(@RequestBody Coach coach, @PathVariable Member memberId, @PathVariable Gym gymId) {
-        coach.setMemberId(memberId);
+    @PostMapping("/insert/{gymMemberId}/{gymId}")
+    public Coach insertForm(@RequestBody Coach coach, @PathVariable GymMember gymMemberId, @PathVariable Gym gymId) {
+        coach.setGymMemberId(gymMemberId);
         coach.setGymId(gymId);
         return coachRepository.save(coach);
     }
 
-    @GetMapping("/exists/{memberId}")
-    public Boolean existsByMemberId(@PathVariable Member memberId) {
-        return coachRepository.existsByMemberId(memberId);
+    @GetMapping("/exists/{gymMemberId}")
+    public Boolean existsByMemberId(@PathVariable GymMember gymMemberId) {
+        return coachRepository.existsByMemberId(gymMemberId);
     }
 
     @GetMapping("/existscoachid/{coachId}")
@@ -110,9 +110,9 @@ public class CoachController {
         return coachRepository.existsByCoachId(coachId);
     }
 
-    @GetMapping("/find/{memberId}")
-    public Coach findByMemberId(@PathVariable Member memberId) {
-        return coachRepository.findByMemberId(memberId);
+    @GetMapping("/find/{gymMemberId}")
+    public Coach findByMemberId(@PathVariable GymMember gymMemberId) {
+        return coachRepository.findByMemberId(gymMemberId);
     }
 
     @GetMapping("/find")
@@ -157,34 +157,34 @@ public class CoachController {
      ********************************************/
 
 
-    @PostMapping("/{memberId}")
-    public HashMap<String, String> postDiary(@RequestBody Diary diaries, @PathVariable Member memberId){
+    @PostMapping("/{gymMemberId}")
+    public HashMap<String, String> postDiary(@RequestBody Diary diaries, @PathVariable GymMember gymMemberId){
         HashMap<String, String> map = new HashMap<>();
-        diaries.setMemberId(memberId);
+        diaries.setGymMemberId(gymMemberId);
         diaryRepository.save(diaries);
         map.put("RESULT", "다이어리 등록 성공");
         return map;
     }
 
-    @GetMapping("/exists/{memberId}/{diaryDate}")
-    public Boolean existsByMemberIdAndDiaryDate(@PathVariable Member memberId, @PathVariable String diaryDate){
-        return diaryRepository.existsByMemberIdAndDiaryDate(memberId, diaryDate);
+    @GetMapping("/exists/{gymMemberId}/{diaryDate}")
+    public Boolean existsByMemberIdAndDiaryDate(@PathVariable GymMember gymMemberId, @PathVariable String diaryDate){
+        return diaryRepository.existsByMemberIdAndDiaryDate(gymMemberId, diaryDate);
     }
 
-    @GetMapping("/list/{memberId}")
-    public List<Diary> findByMemberId2(@PathVariable Member memberId){
-        return diaryRepository.findByMemberId(memberId);
+    @GetMapping("/list/{gymMemberId}")
+    public List<Diary> findByMemberId2(@PathVariable GymMember gymMemberId){
+        return diaryRepository.findByMemberId(gymMemberId);
     }
 
-    @GetMapping("/find/{diaryDate}/{memberId}")
-    public Diary findByDiaryDateAndMemberId(@PathVariable String diaryDate, @PathVariable Member memberId){
-        return diaryRepository.findByDiaryDateAndMemberId(diaryDate, memberId);
+    @GetMapping("/find/{diaryDate}/{gymMemberId}")
+    public Diary findByDiaryDateAndMemberId(@PathVariable String diaryDate, @PathVariable GymMember gymMemberId){
+        return diaryRepository.findByDiaryDateAndMemberId(diaryDate, gymMemberId);
     }
 
-    @PutMapping("/update/{diaryDate}/{memberId}")
-    public HashMap<String, String> updateDiary(@PathVariable String diaryDate, @PathVariable Member memberId, @RequestBody Diary diary){
+    @PutMapping("/update/{diaryDate}/{gymMemberId}")
+    public HashMap<String, String> updateDiary(@PathVariable String diaryDate, @PathVariable GymMember gymMemberId, @RequestBody Diary diary){
         HashMap<String, String> map = new HashMap<>();
-        Diary tempDiary = diaryRepository.findByDiaryDateAndMemberId(diaryDate, memberId);
+        Diary tempDiary = diaryRepository.findByDiaryDateAndMemberId(diaryDate, gymMemberId);
         tempDiary.setDiaryDays(diary.getDiaryDays());
         tempDiary.setDiaryGoal(diary.getDiaryGoal());
         tempDiary.setDiaryMuscle(diary.getDiaryMuscle());
@@ -437,7 +437,7 @@ public class CoachController {
      ********************************************/
     //member회원가입 local
     @PostMapping("/join")
-    public HashMap<String, String> join(@RequestBody Member members){
+    public HashMap<String, String> join(@RequestBody GymMember members){
         HashMap<String ,String> map = new HashMap<>();
         System.out.println("조인 접근");
         System.out.println("members : " + members);
@@ -448,11 +448,11 @@ public class CoachController {
 
     //로그인 하기
     @PostMapping("/login")
-    public Optional<Member> login(@RequestBody Member members){
+    public Optional<GymMember> login(@RequestBody GymMember members){
         System.out.println("로그인 컨트롤러 : " + members.getMemberEmail() + members.getMemberPw());
 
         System.out.println("members.getMemberPw() : "+members.getMemberPw());
-        Optional<Member> result = memberRepository.findByMemberEmailAndMemberPw(members.getMemberEmail(), members.getMemberPw());
+        Optional<GymMember> result = memberRepository.findByMemberEmailAndMemberPw(members.getMemberEmail(), members.getMemberPw());
 
         if(result.isPresent()){
             System.out.println(result + "111");
@@ -465,10 +465,10 @@ public class CoachController {
 
     //회원에 id 따른 정보 가져오기
     @GetMapping("/find/{id}")
-    public Member findById(@PathVariable Long id){
+    public GymMember findById(@PathVariable Long id){
         System.out.println("findById " + id);
 
-        Member members = memberRepository.findById(id)
+        GymMember members = memberRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
         System.out.println("id 회원정보 : "+ members);
         return members;
@@ -477,11 +477,11 @@ public class CoachController {
     // 회원 정보 수정
     @PutMapping("/update/{id}")
     @Transactional
-    public HashMap<String, String> update(@PathVariable Long id, @RequestBody Member members) {
+    public HashMap<String, String> update(@PathVariable Long id, @RequestBody GymMember members) {
         HashMap<String ,String> map = new HashMap<>();
 
         // 아이디 찾고 --> 해당 정보 수정
-        Member oldMembers = memberRepository.findById((id)).get();
+        GymMember oldMembers = memberRepository.findById((id)).get();
         oldMembers.setMemberName(members.getMemberName());
         oldMembers.setMemberPw(members.getMemberPw());
         oldMembers.setMemberHeight(members.getMemberHeight());
@@ -515,12 +515,12 @@ public class CoachController {
 
 
     // 커스터마이징한 챌린지 값 넣기
-    @PostMapping("/insert/{memberId}")
+    @PostMapping("/insert/{gymMemberId}")
     public HashMap<String, String> insertMyChallenge(@RequestBody MyChallenge myChallenge,
-                                                      @PathVariable Member memberId) {
+                                                      @PathVariable GymMember gymMemberId) {
         HashMap<String, String> map = new HashMap<>();
 
-        myChallenge.setMemberId(memberId);
+        myChallenge.setGymMemberId(gymMemberId);
 
         myChallengeRepository.save(myChallenge);
 
@@ -529,10 +529,10 @@ public class CoachController {
     }
 
     // memberId 별로 가져오기
-    @GetMapping("/findbymemberid/{memberId}")
-    public List<MyChallenge> findByMemberId3(@PathVariable Member memberId){
+    @GetMapping("/findbymemberid/{gymMemberId}")
+    public List<MyChallenge> findByMemberId3(@PathVariable GymMember gymMemberId){
 
-        return myChallengeRepository.findByMemberId(memberId);
+        return myChallengeRepository.findByMemberId(gymMemberId);
     }
 
     // findFirstByOrderByIdDesc
@@ -622,15 +622,15 @@ public class CoachController {
     // }
 
     // PathVariable 로 값 저장하기
-    @PostMapping("/insert/{memberId}/{exerciseId}/{myChallengeId}")
+    @PostMapping("/insert/{gymMemberId}/{exerciseId}/{myChallengeId}")
     public HashMap<String,String> insertMemEx(@RequestBody MyExercise myExercises,
-                                              @PathVariable Member memberId,
+                                              @PathVariable GymMember gymMemberId,
                                               @PathVariable Exercise exerciseId,
                                               @PathVariable MyChallenge myChallengeId){
         HashMap<String,String> map = new HashMap<>();
 
         myExercises.setMyChallengeId(myChallengeId);
-        myExercises.setMemberId(memberId);
+        myExercises.setGymMemberId(gymMemberId);
         myExercises.setExerciseId(exerciseId);
         myExerciseRepository.save(myExercises);
 
@@ -639,14 +639,14 @@ public class CoachController {
     }
 
     // PathVariable 로 값 저장하기
-    @PostMapping("/insert2/{memberId}/{exerciseId}")
+    @PostMapping("/insert2/{gymMemberId}/{exerciseId}")
     public HashMap<String,String> insertMemEx2(@RequestBody MyExercise myExercises,
-                                               @PathVariable Member memberId,
+                                               @PathVariable GymMember gymMemberId,
                                                @PathVariable Exercise exerciseId){
 
         HashMap<String,String> map = new HashMap<>();
 
-        myExercises.setMemberId(memberId);
+        myExercises.setGymMemberId(gymMemberId);
         myExercises.setExerciseId(exerciseId);
         myExerciseRepository.save(myExercises);
 

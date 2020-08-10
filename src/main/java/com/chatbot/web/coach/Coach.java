@@ -27,7 +27,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@Table (name = "coaches")
+@Table (name = "coach")
 public class Coach implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,7 +48,7 @@ public class Coach implements Serializable {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "member_id") private Member memberId;
+    @JoinColumn(name = "member_id") private GymMember gymMemberId;
 
     @ManyToOne
     @JoinColumn(name = "gym_id") private Gym gymId;

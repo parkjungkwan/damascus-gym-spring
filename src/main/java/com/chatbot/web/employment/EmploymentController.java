@@ -1,7 +1,7 @@
 package com.chatbot.web.employment;
 
 import com.google.gson.JsonObject;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
-
+@AllArgsConstructor
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController @RequestMapping("/employment")
 public class EmploymentController {
-    @Autowired
-    EmploymentRepository memberRepository;
-    @Autowired EntityManager manager;
+    private final WorkMemberRepository memberRepository;
+    private final EntityManager manager;
 
     @GetMapping("/all")
     public ResponseEntity findAllOrderByJoinDate(){

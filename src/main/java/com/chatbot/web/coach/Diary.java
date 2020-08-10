@@ -46,7 +46,7 @@ public class Diary implements Serializable{
     @Column(name = "diary_comment") private String diaryComment;
 
     @ManyToOne
-    @JoinColumn(name = "member_id") private Member memberId;
+    @JoinColumn(name = "member_id") private GymMember gymMemberId;
 
     @Builder
     private Diary(String diaryDate, String diaryPhoto, String diaryDays, String diaryGoal,

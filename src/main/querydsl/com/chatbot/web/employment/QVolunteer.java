@@ -22,11 +22,11 @@ public class QVolunteer extends EntityPathBase<Volunteer> {
 
     public static final QVolunteer volunteer = new QVolunteer("volunteer");
 
-    public final QArticle article;
+    public final QWorkArticle article;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final QMember member;
+    public final QWorkMember member;
 
     public final DateTimePath<java.time.LocalDateTime> volunteerDate = createDateTime("volunteerDate", java.time.LocalDateTime.class);
 
@@ -48,8 +48,8 @@ public class QVolunteer extends EntityPathBase<Volunteer> {
 
     public QVolunteer(Class<? extends Volunteer> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.article = inits.isInitialized("article") ? new QArticle(forProperty("article")) : null;
-        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
+        this.article = inits.isInitialized("article") ? new QWorkArticle(forProperty("article")) : null;
+        this.member = inits.isInitialized("member") ? new QWorkMember(forProperty("member")) : null;
     }
 
 }

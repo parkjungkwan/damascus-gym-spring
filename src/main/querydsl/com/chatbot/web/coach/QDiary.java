@@ -42,7 +42,7 @@ public class QDiary extends EntityPathBase<Diary> {
 
     public final StringPath diaryWater = createString("diaryWater");
 
-    public final QMember memberId;
+    public final QGymMember gymMemberId;
 
     public QDiary(String variable) {
         this(Diary.class, forVariable(variable), INITS);
@@ -62,7 +62,7 @@ public class QDiary extends EntityPathBase<Diary> {
 
     public QDiary(Class<? extends Diary> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.memberId = inits.isInitialized("memberId") ? new QMember(forProperty("memberId")) : null;
+        this.gymMemberId = inits.isInitialized("gymMemberId") ? new QGymMember(forProperty("gymMemberId")) : null;
     }
 
 }

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class MemberTest {
     @Test
     void getName() {
-        final Member member = Member.builder().name("James").build();
+        final WorkMember member = WorkMember.builder().name("James").build();
         final String name = member.getName();
         assertEquals("James", name);
     }

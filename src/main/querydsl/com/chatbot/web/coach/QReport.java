@@ -22,7 +22,7 @@ public class QReport extends EntityPathBase<Report> {
 
     public static final QReport report = new QReport("report");
 
-    public final QMember memberId;
+    public final QGymMember gymMemberId;
 
     public final StringPath reportCalIn = createString("reportCalIn");
 
@@ -50,7 +50,7 @@ public class QReport extends EntityPathBase<Report> {
 
     public QReport(Class<? extends Report> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.memberId = inits.isInitialized("memberId") ? new QMember(forProperty("memberId")) : null;
+        this.gymMemberId = inits.isInitialized("gymMemberId") ? new QGymMember(forProperty("gymMemberId")) : null;
     }
 
 }

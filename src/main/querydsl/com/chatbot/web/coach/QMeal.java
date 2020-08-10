@@ -24,6 +24,8 @@ public class QMeal extends EntityPathBase<Meal> {
 
     public final QFood foodId;
 
+    public final QGymMember gymMemberId;
+
     public final StringPath mealCal = createString("mealCal");
 
     public final StringPath mealDate = createString("mealDate");
@@ -31,8 +33,6 @@ public class QMeal extends EntityPathBase<Meal> {
     public final NumberPath<Long> mealId = createNumber("mealId", Long.class);
 
     public final StringPath mealTime = createString("mealTime");
-
-    public final QMember memberId;
 
     public QMeal(String variable) {
         this(Meal.class, forVariable(variable), INITS);
@@ -53,7 +53,7 @@ public class QMeal extends EntityPathBase<Meal> {
     public QMeal(Class<? extends Meal> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.foodId = inits.isInitialized("foodId") ? new QFood(forProperty("foodId")) : null;
-        this.memberId = inits.isInitialized("memberId") ? new QMember(forProperty("memberId")) : null;
+        this.gymMemberId = inits.isInitialized("gymMemberId") ? new QGymMember(forProperty("gymMemberId")) : null;
     }
 
 }

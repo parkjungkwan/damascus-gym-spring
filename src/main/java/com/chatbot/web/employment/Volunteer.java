@@ -16,17 +16,17 @@ public class Volunteer {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id") private Member member;
+    @JoinColumn(name = "member_id") private WorkMember member;
 
     @ManyToOne
-    @JoinColumn(name = "work_id") private Article article;
+    @JoinColumn(name = "work_id") private WorkArticle article;
 
     @CreationTimestamp @Column(name = "volunteer_date")
     private LocalDateTime volunteerDate;
 
     @Builder
-    private Volunteer(Member member,
-                      Article article,
+    private Volunteer(WorkMember member,
+                      WorkArticle article,
                       LocalDateTime volunteerDate) {
         this.member = member;
         this.article = article;

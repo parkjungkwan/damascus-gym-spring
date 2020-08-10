@@ -24,7 +24,7 @@ public class QMyExercise extends EntityPathBase<MyExercise> {
 
     public final QExercise exerciseId;
 
-    public final QMember memberId;
+    public final QGymMember gymMemberId;
 
     public final QMyChallenge myChallengeId;
 
@@ -61,7 +61,7 @@ public class QMyExercise extends EntityPathBase<MyExercise> {
     public QMyExercise(Class<? extends MyExercise> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.exerciseId = inits.isInitialized("exerciseId") ? new QExercise(forProperty("exerciseId"), inits.get("exerciseId")) : null;
-        this.memberId = inits.isInitialized("memberId") ? new QMember(forProperty("memberId")) : null;
+        this.gymMemberId = inits.isInitialized("gymMemberId") ? new QGymMember(forProperty("gymMemberId")) : null;
         this.myChallengeId = inits.isInitialized("myChallengeId") ? new QMyChallenge(forProperty("myChallengeId"), inits.get("myChallengeId")) : null;
     }
 
