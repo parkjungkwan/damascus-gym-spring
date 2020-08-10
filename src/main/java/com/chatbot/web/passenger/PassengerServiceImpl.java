@@ -1,7 +1,7 @@
 package com.chatbot.web.passenger;
 
-import com.chatbot.web.utils.Box;
-import com.chatbot.web.utils.GenericService;
+import com.chatbot.web.util.Box;
+import com.chatbot.web.util.GenericService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;

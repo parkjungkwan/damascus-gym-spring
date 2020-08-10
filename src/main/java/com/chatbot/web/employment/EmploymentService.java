@@ -1,6 +1,5 @@
 package com.chatbot.web.employment;
 
-import com.chatbot.web.utils.GenericService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
