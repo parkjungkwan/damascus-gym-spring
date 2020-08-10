@@ -1,4 +1,4 @@
-package com.chatbot.web.employment;
+package com.chatbot.web.passenger;
 /*
 Variable Notes
 * 0-PassengerId, 1-Survived,2-Pclass,3-Name,4-Gender,

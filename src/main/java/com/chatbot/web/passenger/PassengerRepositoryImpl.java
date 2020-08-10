@@ -2,7 +2,6 @@ package com.chatbot.web.passenger;
 
 import static com.chatbot.web.passenger.QPassenger.passenger;
 
-import com.chatbot.web.employment.Passenger;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.querydsl.jpa.impl.JPAUpdateClause;

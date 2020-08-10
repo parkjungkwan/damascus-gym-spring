@@ -16,7 +16,7 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QMember extends EntityPathBase<Member> {
 
-    private static final long serialVersionUID = 1014359176L;
+    private static final long serialVersionUID = 760511990L;
 
     public static final QMember member = new QMember("member1");
 
@@ -48,7 +48,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath ssn = createString("ssn");
 
-    public final ListPath<Volunteer, com.chatbot.web.volunteer.QVolunteer> volunteers = this.<Volunteer, com.chatbot.web.volunteer.QVolunteer>createList("volunteers", Volunteer.class, com.chatbot.web.volunteer.QVolunteer.class, PathInits.DIRECT2);
+    public final ListPath<Volunteer, QVolunteer> volunteers = this.<Volunteer, QVolunteer>createList("volunteers", Volunteer.class, QVolunteer.class, PathInits.DIRECT2);
 
     public final NumberPath<Integer> volunteerScore = createNumber("volunteerScore", Integer.class);
 

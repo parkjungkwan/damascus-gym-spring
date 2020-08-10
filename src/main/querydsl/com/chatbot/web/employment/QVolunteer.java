@@ -1,8 +1,7 @@
-package com.chatbot.web.volunteer;
+package com.chatbot.web.employment;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.chatbot.web.employment.Volunteer;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -17,17 +16,17 @@ import com.querydsl.core.types.dsl.PathInits;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QVolunteer extends EntityPathBase<Volunteer> {
 
-    private static final long serialVersionUID = -829737344L;
+    private static final long serialVersionUID = 1286142638L;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
     public static final QVolunteer volunteer = new QVolunteer("volunteer");
 
-    public final com.chatbot.web.article.QArticle article;
+    public final QArticle article;
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final com.chatbot.web.employment.QMember member;
+    public final QMember member;
 
     public final DateTimePath<java.time.LocalDateTime> volunteerDate = createDateTime("volunteerDate", java.time.LocalDateTime.class);
 
@@ -49,8 +48,8 @@ public class QVolunteer extends EntityPathBase<Volunteer> {
 
     public QVolunteer(Class<? extends Volunteer> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
-        this.article = inits.isInitialized("article") ? new com.chatbot.web.article.QArticle(forProperty("article")) : null;
-        this.member = inits.isInitialized("member") ? new com.chatbot.web.employment.QMember(forProperty("member")) : null;
+        this.article = inits.isInitialized("article") ? new QArticle(forProperty("article")) : null;
+        this.member = inits.isInitialized("member") ? new QMember(forProperty("member")) : null;
     }
 
 }

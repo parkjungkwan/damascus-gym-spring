@@ -1,8 +1,8 @@
-package com.chatbot.web.passenger;
+package com.chatbot.web.employment;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.chatbot.web.employment.Passenger;
+import com.chatbot.web.passenger.Passenger;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -16,7 +16,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QPassenger extends EntityPathBase<Passenger> {
 
-    private static final long serialVersionUID = 1571148960L;
+    private static final long serialVersionUID = -1826729026L;
 
     public static final QPassenger passenger = new QPassenger("passenger");
 

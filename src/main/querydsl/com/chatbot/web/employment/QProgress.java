@@ -1,8 +1,7 @@
-package com.chatbot.web.progress;
+package com.chatbot.web.employment;
 
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
-import com.chatbot.web.employment.Progress;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
@@ -16,7 +15,7 @@ import com.querydsl.core.types.Path;
 @Generated("com.querydsl.codegen.EntitySerializer")
 public class QProgress extends EntityPathBase<Progress> {
 
-    private static final long serialVersionUID = -287866904L;
+    private static final long serialVersionUID = 355946121L;
 
     public static final QProgress progress = new QProgress("progress");
 

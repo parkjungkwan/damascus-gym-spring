@@ -1,6 +1,5 @@
 package com.chatbot.web.passenger;
 
-import com.chatbot.web.employment.Passenger;
 import com.chatbot.web.utils.Box;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

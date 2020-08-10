@@ -1,6 +1,5 @@
 package com.chatbot.web.passenger;
 
-import com.chatbot.web.employment.Passenger;
 import org.junit.jupiter.api.Test;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
