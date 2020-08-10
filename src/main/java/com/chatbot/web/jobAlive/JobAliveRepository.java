@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public interface JobAliveRepository extends JpaRepository<JobAlive, Long>, IJobScrapRepository {
     @Modifying
@@ -32,15 +33,41 @@ interface AwaiterRepository extends JpaRepository<Awaiter, Long>, IAwaiterReposi
             + "FROM Awaiter a JOIN a.interviewer itv JOIN a.jobAlive live  "
             + "WHERE itv.interviewerId = ?1")
     List<Map<String,Object>> findAliveList(Long itvSeq);
-
-   /* @Query("SELECT itv.interviewer_id AS interviewerId, itv.name AS name, itv.phone AS phone "
-            + "FROM Awaiter a JOIN a.interviewer itv JOIN a.alive live  "
-            + "WHERE live.liveSeq = ?1")  */
     List<Map<String,Object>> findAwaiterList(Long liveSeq);
-
-
 }
-interface CorporationRepository extends JpaRepository<Corporation, Long>, ICorporationRepository{}
+interface CorporationRepository extends JpaRepository<Corporation, Long>, ICorporationRepository{
+    public Optional<Corporation> findByCorId(String corId);
+    public Corporation findByCorIdAndPwd(String corId, String pwd);
+    public Long countByCorId(String corId);
+
+    @Query("SELECT c.pmEmail FROM Corporation c WHERE c.corporCode = ?1")
+    public String findPmEmailByCorId(String corId);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Corporation "
+            + "    SET password = ?2 "
+            + "  WHERE corporId = ?1")
+    public void updatePwdByCorId(String corId, String pwd);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Corporation"
+            + "    SET password = ?2, "
+            + "        corporName = ?3, "
+            + "        ceoName = ?4, "
+            + "        area = ?5, "
+            + "        pmName = ?6, "
+            + "        pmPhone = ?7, "
+            + "        pmEmail = ?8, "
+            + "        city = ?9, "
+            + "        homepage = ?10 "
+            + "  WHERE corporId = ?1")
+    public void updateByCorId(String corporId, String password, String corporName,
+                              String ceoName, String area, String pmName,
+                              String pmPhone, String pmEmail, String city,
+                              String homepage);
+}
 interface InterviewerRepository extends JpaRepository<Interviewer, Long>, IInterviewerRepository{}
 interface JobNoticeRepository extends JpaRepository<JobNotice, Long>, IJobNoticeRepository{}
 interface JobScraptRepository extends JpaRepository<JobScrap, Long>, IJobScrapRepository {}

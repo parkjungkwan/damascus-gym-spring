@@ -32,8 +32,8 @@ public class Corporation implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) private Long corpor_id;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "corpor_code") private Long corporId;
     @Column(name = "corpor_code") private String corporCode;
     @Column(name = "password") private String password;
     @Column(name = "corpor_reg_num") private String corporRegNum;
